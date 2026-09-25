@@ -1,25 +1,30 @@
 const express = require('express');
 const app = express();
-const PORT = 3000;
+const PORT = 4000;
 
-// 1. GET /orders
-app.get('/orders', (req, res) => {
-    res.send("Here is the list of all orders.");
+// 1. GET /products
+app.get('/products', (req, res) => {
+    res.send("Here is the list of all products.");
 });
 
-// 2. POST /orders
-app.post('/orders', (req, res) => {
-    res.send("A new order has been created.");
+// 2. POST /products
+app.post('/products', (req, res) => {
+    res.send("A new product has been added.");
 });
 
-// 3. GET /users
-app.get('/users', (req, res) => {
-    res.send("Here is the list of all users.");
+// 3. GET /categories
+app.get('/categories', (req, res) => {
+    res.send("Here is the list of all categories.");
 });
 
-// 4. POST /users
-app.post('/users', (req, res) => {
-    res.send("A new user has been added.");
+// 4. POST /categories
+app.post('/categories', (req, res) => {
+    res.send("A new category has been created.");
+});
+
+// Wildcard Route for handling 404 errors (Must be placed after all other routes)
+app.use("*", (req, res) => {
+    res.status(404).send("<h1>404 - Page Not Found</h1>");
 });
 
 // Start server

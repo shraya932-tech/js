@@ -1,19 +1,15 @@
 const express = require('express');
+const path = require('path');
 const app = express();
 const PORT = 3000;
 
-const userRoutes = require('./routes/userRoutes');
-const productRoutes = require('./routes/productRoutes');
-const cartRoutes = require('./routes/cartRoutes');
-
 app.use(express.json());
 
-// Mount routers
-app.use('/users', userRoutes);
-app.use('/products', productRoutes);
-app.use('/cart', cartRoutes);
+// Endpoint to serve HTML file using res.sendFile()
+app.get('/api/products', (req, res) => {
+    res.sendFile(path.join(__dirname, 'views', 'products.html'));
+});
 
-// Start server
 app.listen(PORT, () => {
-    console.log(`E-Commerce API server running on http://localhost:${PORT}`);
+    console.log(`Server running on http://localhost:${PORT}`);
 });

@@ -4,10 +4,11 @@ const app = express();
 const PORT = 3000;
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-// Endpoint to serve HTML file using res.sendFile()
+// GET endpoint serving the HTML form
 app.get('/api/products', (req, res) => {
-    res.sendFile(path.join(__dirname, 'views', 'products.html'));
+    res.sendFile(path.join(__dirname, 'views', 'productForm.html'));
 });
 
 app.listen(PORT, () => {

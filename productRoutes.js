@@ -1,24 +1,17 @@
-const express = require('express');
-const router = express.Router();
+const productService = require('../services/productService');
 
-// GET /products
-router.get('/products', (req, res) => {
-    res.send("Here is the list of all products.");
-});
+exports.getAllProducts = (req, res) => {
+    const result = productService.getAllProducts();
+    res.send(result);
+};
 
-// POST /products
-router.post('/products', (req, res) => {
-    res.send("A new product has been added.");
-});
+exports.getProductById = (req, res) => {
+    const { id } = req.params;
+    const result = productService.getProductById(id);
+    res.send(result);
+};
 
-// GET /categories
-router.get('/categories', (req, res) => {
-    res.send("Here is the list of all categories.");
-});
-
-// POST /categories
-router.post('/categories', (req, res) => {
-    res.send("A new category has been created.");
-});
-
-module.exports = router;
+exports.addProduct = (req, res) => {
+    const result = productService.addProduct();
+    res.send(result);
+};
